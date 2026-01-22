@@ -33,10 +33,12 @@
       .catch(e => alert(e.message));
   }
 
-  window.connexion = function() {
-    signInWithEmailAndPassword(auth, email.value, password.value)
-      .then(() => alert("Connexion réussie"))
-      .catch(e => alert(e.message));
+window.connexion = function() {
+  signInWithEmailAndPassword(auth, email.value, password.value)
+    .then(() => {
+      window.location.href = "client.html";
+    })
+    .catch(e => alert(e.message));
   }
 </script>
 
