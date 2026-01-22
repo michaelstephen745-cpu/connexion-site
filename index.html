@@ -12,14 +12,7 @@
 <input type="password" id="password" placeholder="Mot de passe"><br><br>
 
 <button onclick="inscription()">Créer mon compte</button>
-<button onclick="window.connexion = function() {
-  signInWithEmailAndPassword(auth, email.value, password.value)
-    .then(() => {
-      window.location.href = "client.html";
-    })
-    .catch(e => alert(e.message));
-}
-">Se connecter</button>
+<button onclick="connexion()">Se connecter</button>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
