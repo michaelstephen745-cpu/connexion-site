@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Espace Client</title>
+</head>
+<body>
+
+<h1>Bienvenue dans votre espace client</h1>
+
+<p id="userEmail"></p>
+
+<button onclick="deconnexion()">Se déconnecter</button>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "TON_PROJET",
+    authDomain: "TON_PROJET.firebaseapp.com",
+    projectId: "TON_PROJET",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      document.getElementById("userEmail").innerText =
+        "Connecté avec : " + user.email;
+    } else {
+      window.location.href = "index.html";
+    }
+  });
+
+  window.deconnexion = function() {
+    signOut(auth).then(() => {
+      window.location.href = "index.html";
+    });
+  }
+</script>
+
+</body>
+</html>
