@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Espace Client</title>
+</head>
+<body>
+
+<h2>Espace client</h2>
+
+<input type="email" id="email" placeholder="Email"><br><br>
+<input type="password" id="password" placeholder="Mot de passe"><br><br>
+
+<button onclick="inscription()">Créer mon compte</button>
+<button onclick="connexion()">Se connecter</button>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "TON_PROJET",
+    authDomain: "TON_PROJET.firebaseapp.com",
+    projectId: "TON_PROJET",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.inscription = function() {
+    createUserWithEmailAndPassword(auth, email.value, password.value)
+      .then(() => alert("Compte créé avec succès"))
+      .catch(e => alert(e.message));
+  }
+
+  window.connexion = function() {
+    signInWithEmailAndPassword(auth, email.value, password.value)
+      .then(() => alert("Connexion réussie"))
+      .catch(e => alert(e.message));
+  }
+</script>
+
+</body>
+</html>
